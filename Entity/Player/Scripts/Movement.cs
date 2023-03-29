@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
-using Unity.Netcode;
 using UnityEngine;
-public class Movement : NetworkBehaviour
+public class Movement : MonoBehaviour
 {
     public CustomInput input = null;
 
@@ -50,15 +49,7 @@ public class Movement : NetworkBehaviour
     void FixedUpdate()
     {
         
-        //if(IsServer) return;
-        if(!IsLocalPlayer)
-        {   
-            this.gameObject.GetComponentInChildren<Camera>().enabled = false;
-            this.gameObject.GetComponentInChildren<AudioListener>().enabled = false;
-
         
-        }
-        if (!IsOwner) { return; }
         wheremove = transform.forward*moveVector.y+transform.right*moveVector.x;
         //Debug.Log(wheremove);
         controller.Move(wheremove*Time.deltaTime*speed);
